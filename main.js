@@ -45,7 +45,12 @@ function playStream(idVideoTag, stream) {
 // openStream()
 //     .then(stream => playStream("localStream", stream));
 
-const peer = new Peer();
+const peer = new Peer({
+    key: "peerjs",
+    host: "9000-db336d0d-ebf9-4d00-bdf6-60648bd95e43.ws-us02.gitpod.io",
+    secure: true,
+    port: 443
+});
 peer.on('open', id => {
     $("#my-peer").append(id);
     //Sign up username
