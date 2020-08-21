@@ -9,16 +9,25 @@
 </head>
 
 <body>
-    <h3 id="my-peer">Your ID: </h3>
-    <video id="localStream" width="320" height="240" controls muted></video>
-    <br /><br />
-    <video id="remoteStream" width="320" height="240" controls muted></video>
-    <br /><br />
-    <input type="text" id="remoteID" placeholder="Remote ID" />
-    <button id="btnCall">Call</button>
-    <br /> <br />
-    <input type="text" id="txtUsername" placeholder="Enter your username" />
-    <button id="btnSignUp">Sign Up</button>
+    <div id="div-chat">
+        <p>Online user:</p>
+        <ul id="ulUser">
+
+        </ul>
+        <h3 id="my-peer">Your ID: </h3>
+        <video id="localStream" width="240" height="180" controls muted></video>
+        <br /><br />
+        <video id="remoteStream" width="240" height="180" controls muted></video>
+        <br /><br />
+        <input type="text" id="remoteID" placeholder="Remote ID" />
+        <button id="btnCall">Call</button>
+    </div>
+    <div id="div-dangky">
+        <br /> <br />
+        <input type="text" id="txtUsername" placeholder="Enter your username" />
+        <button id="btnSignUp">Sign Up</button>
+    </div>
+
 </body>
 <script src="main.js"></script>
 

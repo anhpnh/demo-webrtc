@@ -1,13 +1,29 @@
 const socket = io("http://localhost:3000");
 
+$("#div-chat").hide();
 
 //Lang nghe su kien danh-sach-online
 socket.on("danh-sach-online", arrUserInfo => {
+    $("#div-chat").show();
+    $("#div-dangky").hide();
     console.log(arrUserInfo);
+    arrUserInfo.forEach(user => {
+        const { peerID, ten } = user;
+        $("#ulUser").append(`<li id="${peerID}">${ten}</li>`);
+    });
+
+    //Lang nghe su kien co nguoi dung moi
+    socket.on("co-nguoi-dung-moi", user => {
+        console.log(user);
+        const { peerID, ten } = user;
+        $("#ulUser").append(`<li id="${peerID}">${ten}</li>`)
+    });
+
 });
-//Lang nghe su kien co nguoi dung moi
-socket.on("co-nguoi-dung-moi", user => {
-    console.log(user);
+
+//Lang nghe su kien dang-ky-that-bai
+socket.on("dang-ky-that-bai", () => {
+    alert("Username da ton tai, vui long chon username khac");
 });
 
 function openStream() {
