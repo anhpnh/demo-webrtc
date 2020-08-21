@@ -9,14 +9,14 @@ socket.on("danh-sach-online", arrUserInfo => {
     console.log(arrUserInfo);
     arrUserInfo.forEach(user => {
         const { peerID, ten } = user;
-        $("#ulUser").append(`<li id="${peerID}">${ten}</li>`);
+        $("#ulUser").append(`<li style="color: green;" id="${peerID}">${ten}</li>`);
     });
 
     //Lang nghe su kien co nguoi dung moi
     socket.on("co-nguoi-dung-moi", user => {
         console.log(user);
         const { peerID, ten } = user;
-        $("#ulUser").append(`<li id="${peerID}">${ten}</li>`)
+        $("#ulUser").append(`<li style="color: green;" id="${peerID}">${ten}</li>`)
     });
 
     //Lang nghe su kien ai-do-ngat-ket-noi
@@ -73,6 +73,17 @@ peer.on("call", call => {
         .then(stream => {
             call.answer(stream);
             playStream("localStream", stream);
+            call.on("stream", remoteStream => playStream("remoteStream", remoteStream));
+        });
+});
+
+//Click user online to call
+$("#ulUser").on("click", "li", function() {
+    const id = $(this).attr("id");
+    openStream()
+        .then(stream => {
+            playStream("localStream", stream);
+            const call = peer.call(id, stream);
             call.on("stream", remoteStream => playStream("remoteStream", remoteStream));
         });
 });
