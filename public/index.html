@@ -3,24 +3,20 @@
 
 <head>
     <title>anhpnh Demo WebRTC</title>
-    <script src="jquery.js"></script>
-    <script src="socket.io.js"></script>
-    <script src="peer.js"></script>
+    <script src="/js/jquery.js"></script>
+    <script src="/js/socket.io.js"></script>
+    <script src="/js/peer.js"></script>
 </head>
 
 <body>
     <div id="div-chat">
-        <p>Online user:</p>
+        <p>Danh sách đang online - Click để gọi</p>
         <ul id="ulUser">
 
         </ul>
-        <h3 id="my-peer">Your ID: </h3>
         <video id="localStream" width="240" height="180" controls muted></video>
         <br /><br />
         <video id="remoteStream" width="240" height="180" controls muted></video>
-        <br /><br />
-        <input type="text" id="remoteID" placeholder="Remote ID" />
-        <button id="btnCall">Call</button>
     </div>
     <div id="div-dangky">
         <br /> <br />
@@ -29,6 +25,6 @@
     </div>
 
 </body>
-<script src="bundle.js"></script>
+<script src="/js/bundle.js"></script>
 
 </html>

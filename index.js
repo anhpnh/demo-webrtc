@@ -1,4 +1,9 @@
-const io = require("socket.io")(3000);
+const express = require('express');
+const app = express();
+app.use(express.static("public"));
+
+const server = require("http").Server(app);
+const io = require("socket.io")(server);
 const arrUserInfo = [];
 
 io.on("connection", socket => {
@@ -28,3 +33,6 @@ io.on("connection", socket => {
         io.emit("ai-do-ngat-ket-noi", socket.peerID);
     });
 });
+
+server.listen(process.env.PORT || 3000);
+console.log("Server started");
