@@ -19,6 +19,11 @@ socket.on("danh-sach-online", arrUserInfo => {
         $("#ulUser").append(`<li id="${peerID}">${ten}</li>`)
     });
 
+    //Lang nghe su kien ai-do-ngat-ket-noi
+    socket.on("ai-do-ngat-ket-noi", peerID => {
+        $(`#${peerID}`).remove();
+    });
+
 });
 
 //Lang nghe su kien dang-ky-that-bai

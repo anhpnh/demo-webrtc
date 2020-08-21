@@ -10,6 +10,7 @@ io.on("connection", socket => {
 
         //Kiem tra user ton tai hay chua
         const isExist = arrUserInfo.some(e => e.ten === user.ten);
+        socket.peerID = user.peerID;
         if (isExist) {
             return socket.emit("dang-ky-that-bai");
         }
@@ -18,5 +19,12 @@ io.on("connection", socket => {
         //Gui danh sach online ve cho client
         socket.emit("danh-sach-online", arrUserInfo);
         socket.broadcast.emit("co-nguoi-dung-moi", user);
+    });
+
+    //Su kien client disconnect
+    socket.on("disconnect", () => {
+        const index = arrUserInfo.findIndex(user => user.peerID === socket.peerID);
+        arrUserInfo.splice(index, 1);
+        io.emit("ai-do-ngat-ket-noi", socket.peerID);
     });
 });
